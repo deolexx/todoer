@@ -61,8 +61,10 @@ public class ToDoController {
     public void removeToDoById(@PathVariable int id) {
         ToDo toDo = toDoDAOService.deleteTodoById(id);
         if (toDo == null) {
+            System.out.println("123");
             throw new ToDoNotFoundException("ToDo with id: " + id + " not found");
         }
+
     }
 
 }

@@ -40,8 +40,10 @@ public class ToDoDAOService {
         Iterator<ToDo> iterator = toDoList.iterator();
         while (iterator.hasNext()){
             ToDo toDo = iterator.next();
-            if(toDo.getId() == id) iterator.remove();
-            return toDo;
+            if(toDo.getId() == id) {
+                iterator.remove();
+                return toDo;
+            }
         }
         return null;
     }

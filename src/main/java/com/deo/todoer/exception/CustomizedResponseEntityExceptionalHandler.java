@@ -17,19 +17,20 @@ public class CustomizedResponseEntityExceptionalHandler extends ResponseEntityEx
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
         ExceptionsResponse exceptionsResponse = new ExceptionsResponse(new Date(),ex.getMessage(),request.getDescription(false));
-        return  new ResponseEntity<Object>(exceptionsResponse,HttpStatus.INTERNAL_SERVER_ERROR);
+        return  new ResponseEntity<>(exceptionsResponse,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(ToDoNotFoundException.class)
     public final ResponseEntity<Object> handleToDoNotFoundException(Exception ex, WebRequest request) {
         ExceptionsResponse exceptionsResponse = new ExceptionsResponse(new Date(),ex.getMessage(),request.getDescription(false));
-        return  new ResponseEntity<Object>(exceptionsResponse,HttpStatus.NOT_FOUND);
+        return  new ResponseEntity<>(exceptionsResponse,HttpStatus.NOT_FOUND);
     }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ExceptionsResponse exceptionsResponse =  new ExceptionsResponse(new Date(),"Validation failed",ex.getBindingResult().toString());
 
-        return new ResponseEntity<Object>(exceptionsResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionsResponse, HttpStatus.BAD_REQUEST);
     }
 
 
